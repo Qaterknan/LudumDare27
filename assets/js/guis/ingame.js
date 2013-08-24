@@ -68,6 +68,16 @@
 			position : new Vector2(20,20),
 		}));
 		game.gui.add(redFighter);
+		
+		var placButton = new PlacingButton({
+			position : new Vector2(game.width/2-240,390),
+			width : 80,
+			height : 80,
+			color : "#787878",
+			pressedColor : "#565656",
+		});
+		
+		game.gui.add(placButton);
 	},
 	afterload : function(){
 		return;

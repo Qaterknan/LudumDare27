@@ -76,19 +76,15 @@ Object2.prototype.lookAt = function(position) {
 	this.rotation = Math.atan(tVec.y/tVec.x);
 	if(tVec.x < 0)
 		this.rotation += PI;
-	//~ if(tVec.y == 0){
-		//~ if(tVec.x > 0)
-			//~ this.rotation = 0;
-		//~ else
-			//~ this.rotation = PI;
-	//~ }
-	//~ if(tVec.x == 0){
-		//~ if(tVec.y > 0)
-			//~ this.rotation = PI/2;
-		//~ else
-			//~ this.rotation = 3*PI/2;
-	//~ }
 	return tVec;
+};
+
+Object2.prototype.getAngle = function (position){
+	var tVec = new Vector2().subVectors(position, this.position);
+	var angle = Math.atan(tVec.y/tVec.x);
+	if(tVec.x < 0)
+		angle += PI;
+	return angle;
 };
 
 Object2.prototype.move = function(vector) {

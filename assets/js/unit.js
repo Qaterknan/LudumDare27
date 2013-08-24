@@ -3,6 +3,7 @@ function Unit( options ){
 	
 	this.color = options.color === undefined ? "#ff0000" : options.color;
 	this.team = options.team === undefined ? 0 : options.team;
+	this.angle = 0;
 	
 	this.health = options.health === undefined ? 10 : options.health;
 	this.attack = options.attack === undefined ? 1 : options.attack;
@@ -14,7 +15,8 @@ function Unit( options ){
 	this.reloading = false;
 	this.clipSize = options.clipSize === undefined ? 30 : options.clipSize;
 	this.clip = this.clipSize;
-	this.defence = options.defence === undefined ? 0 : options.defence;
+	this.defence = options.defence === undefined ? 1 : options.defence;
+	this.criticals = {};
 	
 	this.scanRange = options.scanRange === undefined ? 100 : options.scanRange;
 	this.collisionType = "hitbox";
@@ -23,9 +25,15 @@ function Unit( options ){
 	this.logged = false;
 	this.dying = false;
 	this.target = false;
+
 };
 Unit.prototype = Object.create( Object2.prototype );
 Unit.prototype.render = function (ctx){
+	if(this.texture){
+		if(this.team == 2) this.texture.flip = "x";
+		Object2.prototype.render.call(this,ctx);
+		return;
+	};
 	ctx.save();
 	ctx.fillStyle = this.color;
 	ctx.translate(this.position.x,this.position.y);
@@ -37,9 +45,9 @@ Unit.prototype.render = function (ctx){
 	ctx.restore();
 };
 Unit.prototype.move = function (){
-	if(this.target) var vecT = this.lookAt(this.target.position);
-	var dx = Math.cos(this.rotation)*this.speed;
-	var dy = Math.sin(this.rotation)*this.speed;
+	if(this.target) this.angle = this.getAngle(this.target.position);
+	var dx = Math.cos(this.angle)*this.speed;
+	var dy = Math.sin(this.angle)*this.speed;
 	this.position.x += dx;
 	this.position.y += dy;
 	var colls = game.checkCollisions(this);
@@ -60,7 +68,7 @@ Unit.prototype.move = function (){
 		this.position.y -= dy;
 	}
 };
-Unit.prototype.scan = function (){
+Unit.prototype.scan = function (){console.log("skanuji")
 	var readyToGo = false;
 	var shooting = false;
 	for(var i in game.children){
@@ -81,11 +89,11 @@ Unit.prototype.scan = function (){
 	};
 	if(!this.target){
 		if(this.team == 1){
-			this.rotation = 0;
+			this.angle = 0;
 			readyToGo = true;
 		}
 		if(this.team == 2){
-			this.rotation = PI;
+			this.angle = PI;
 			readyToGo = true;
 		}
 	}
@@ -101,9 +109,10 @@ Unit.prototype.tick = function (){
 	}
 	this.scan();
 };
-Unit.prototype.takeDamage = function ( attacker ){ // Sem později přidat particle effects
-	var damage = attacker.attack - this.defence;
-	if(damage < 0) damage = 0;
+Unit.prototype.takeDamage = function ( attacker ){// Sem později přidat particle effects
+	var critical = attacker.criticals[this.name] === undefined ? 1 : attacker.criticals[this.name];
+	var damage = attacker.attack*this.defence*critical;
+	if(damage < 0.1) damage = 0.1;
 	this.health -= damage;
 	if(this.health <= 0){
 		this.dying = true;

@@ -1,7 +1,9 @@
 new function Level(){
 	this.textures = {
-		"mutant" : "assets/textures/mutant.png",
-		"rifleman" : "assets/textures/rifleman.png",
+		"mutIso" : "assets/textures/mutant.png",
+		"rifleIso" : "assets/textures/rifleman.png",
+		"mutFlat" : "assets/textures/mutant_icon.png",
+		"rifleFlat" : "assets/textures/rifleman_icon.png",
 	};
 	this.sounds = {};
 	this.scripts = {
@@ -10,7 +12,6 @@ new function Level(){
 	this.afterLoad = function(){
 		game.gui.GUILoad(this.scripts.menuGUI);
 		
-		//~ A nyní nejodpornější věc na světě:
-		game.textures = this.textures;
+		game.NPCs = new NPCs(this.textures);
 	};
 };

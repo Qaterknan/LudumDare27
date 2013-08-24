@@ -18,6 +18,7 @@ function Game(){
 	this.camera = new Camera();
 
 	this.interval = false;
+	this.paused = false;
 };
 Game.prototype = Object.create( Object2.prototype );
 

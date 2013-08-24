@@ -6,12 +6,15 @@ function Background( options ){
 	this.zIndex = -1;
 	this.collidable = false;
 	this.id = "BG";
+	this.width = options.width === undefined ? game.width-40 : options.width;
+	this.height = options.height === undefined ? game.height-40 : options.height;
 };
 Background.prototype = Object.create( Object2.prototype );
+
 Background.prototype.tick = function (){
-	this.width = game.canvas.width-40;
-	this.height = game.canvas.height-40;
+	return;
 };
+
 Background.prototype.render = function (ctx){
 	ctx.fillStyle = this.color;
 	ctx.fillRect(this.position.x,this.position.y,this.width, this.height);

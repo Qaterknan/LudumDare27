@@ -95,6 +95,7 @@ Unit.prototype.scan = function (){
 	if(readyToGo) this.move();
 };
 Unit.prototype.tick = function (){
+	if(game.paused) return;
 	if(this.dying){
 		this.parent.remove(this);
 	}
@@ -106,7 +107,14 @@ Unit.prototype.takeDamage = function ( attacker ){ // Sem později přidat parti
 	this.health -= damage;
 	if(this.health <= 0){
 		this.dying = true;
-		attacker.target = false;
+		console.log("death loop");
+		for(var i in game.children){
+			if(game.children[i] instanceof Unit){
+				if(game.children[i].target == this){
+					game.children[i].target = false;
+				}
+			}
+		};
 	}
 };
 Unit.prototype.strike = function ( cil ){ // Sem později přidat particle effects
@@ -129,6 +137,7 @@ Unit.prototype.shoot = function ( cil ){ // Sem později přidat particle effect
 	}
 };
 Unit.prototype.addTarget = function ( cil ){
+	if(cil.dying) return;
 	if(!this.target){
 		this.target = cil;
 	}

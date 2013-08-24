@@ -5,6 +5,7 @@ new function Level(){
 		"ingameGUI" : "assets/js/guis/ingame.js",
 	};
 	this.afterLoad = function(){
+		game.paused = true;
 		game.gui.GUILoad(this.scripts.ingameGUI);
 		
 		game.add( new Unit({
@@ -37,6 +38,6 @@ new function Level(){
 			scanRange : 500,
 		}) );
 		
-		game.add(new Background({collidable : false,}));
+		game.add(new Background({collidable : false,height : game.height - 120}));
 	};
 };

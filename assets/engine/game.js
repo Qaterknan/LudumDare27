@@ -95,18 +95,18 @@ Game.prototype.render = function (ctx){
 	}
 	ctx.restore();
 
-	this.lights.render(ctx);
+	//this.lights.render(ctx);
 
 	this.gui.render(ctx);
 
-	if(this.filterColor){
+	/*if(this.filterColor){
 		var gradient = ctx.createRadialGradient(this.width/2, this.height/2, 0, this.width/2, this.height/2, this.width/2);
 		gradient.addColorStop(0, this.filterColor.getRGBA(0));
 		gradient.addColorStop(1, this.filterColor.getRGBA());
 
 		ctx.fillStyle = gradient;
 		ctx.fillRect(0,0,this.width, this.height);
-	}
+	}*/
 };
 
 Game.prototype.levelLoad = function (src, nosave){
@@ -150,7 +150,7 @@ Game.prototype.checkCollisions = function(obj){
 	for(var i in this.children){
 		var child = this.children[i];
 		if(child != obj){
-			if(child.testCollision(obj)){
+			if(child.checkCollision(obj)){
 				colliding.push(child);
 			//~ var collision = child.testCollision(obj, true);
 			//~ if(collision){

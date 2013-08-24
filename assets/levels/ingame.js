@@ -8,13 +8,6 @@ new function Level(){
 		game.gui.GUILoad(this.scripts.ingameGUI);
 		
 		game.add( new Unit({
-			position : new Vector2(100,100),
-			opaque : true,
-			width : 20,
-			height : 20,
-		}) );
-		
-		game.add( new Unit({
 			position : new Vector2(500,100),
 			opaque : true,
 			width : 20,
@@ -40,6 +33,10 @@ new function Level(){
 			team : 1,
 			color : "#00ff00",
 			health : 20,
+			shootingRange : 400,
+			scanRange : 500,
 		}) );
+		
+		game.add(new Background({collidable : false,}));
 	};
 };

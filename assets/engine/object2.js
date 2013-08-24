@@ -104,8 +104,8 @@ Object2.prototype.computeBoundingRadius = function() {
 };
 
 Object2.prototype.checkCollision = function(obj) {
-	if(!obj.collidable)
-		return false;
+	if(!obj.collidable){
+		return false;}
 	if(this.collisionType == "circle"){
 		var dx = obj.position.x - this.position.x;
 		var dy = obj.position.y - this.position.y;

@@ -14,6 +14,8 @@ new function Level(){
 		"toyFlat" : "assets/textures/toyota_icon.png",
 		"heliIso" : "assets/textures/helicopter.png",
 		"heliFlat" : "assets/textures/helicopter_icon.png",
+		"motoIso" : "assets/textures/motorbike.png",
+		"motoFlat" : "assets/textures/motorbike_icon.png",
 	};
 	this.sounds = {};
 	this.scripts = {

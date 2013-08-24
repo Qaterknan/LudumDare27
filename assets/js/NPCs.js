@@ -352,6 +352,56 @@ function NPCs( textures ){
 		isoTexture : helicopterTextureIso,
 		flatTexture : helicopterTextureFlat,
 	};
+	
+	// MOTORBIKE
+	
+	var motorbikeTextureIso = new Texture(textures.motoIso, {
+		totalFrames : 4,
+		currentAnimation : "walking",
+		animations : {
+			walking : {
+				start : 0,
+				end : 1,
+				speed : 200,
+			},
+			standing : {
+				start:0,
+				end:0,
+				speed : 200,
+			},
+			shooting : {
+				start:2,
+				end:3,
+				speed:200
+			},
+		},
+	});
+	var motorbikeTextureFlat = new Texture(textures.motoFlat);
+	this.motorbike = {
+		name : "Motorbike",
+		description : "Side carts are not out-dated!",
+		isoWidth : 80,
+		isoHeight : 80,
+		flatWidth : 40,
+		flatHeight : 40,
+		health : 200,
+		attack : 3,
+		speed : 10,
+		cadency : 70,
+		defence : 0.7,
+		shootingRange : 250,
+		scanRange : 280,
+		reloadTime : 500,
+		clipSize : 64,
+		criticals : {
+			Assassin : 1.5,
+			Rifleman : 1.5,
+			Toyota : 1.5,
+			Robot : 1.5,
+		},
+		isoTexture : motorbikeTextureIso,
+		flatTexture : motorbikeTextureFlat,
+	};
 };
 
 NPCs.prototype.switchType = function (context, type){

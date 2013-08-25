@@ -32,6 +32,11 @@
 			font : "sans-serif",
 			color : "#000000",
 		});
+		hotovost.lastValue = game.player.scrap;
+		hotovost.tick = function (){
+			if(game.player.scrap != this.lastValue)
+				this.changeText("Scrap: "+game.player.scrap);
+		};
 		trezor.add(hotovost);
 		game.gui.add(trezor);
 		
@@ -55,7 +60,6 @@
 				if(this.thingToBuy){
 					game.player.buy(this.thingToBuy);
 					this.children[0].color = "#777777";
-					hotovost.changeText("Scrap : "+game.player.scrap);
 					for(var i in this.parent.children.strana.children){
 						var child = this.parent.children.strana.children[i];
 						if(child.unit.name.toLowerCase() == this.thingToBuy) child.switchMode(true);

@@ -70,7 +70,7 @@ Texture.prototype.draw = function(ctx, width, height) {
 	ctx.globalAlpha = this.alpha;
 	if(this.animated){
 		ctx.fillStyle = "#000";
-		ctx.fillText(this.getCurrentFrame(), addX, addY);
+		//~ ctx.fillText(this.getCurrentFrame(), addX, addY);
 		ctx.drawImage(this.image,
 			this.getCurrentFrame()*this.frameWidth, 0,
 			this.frameWidth, this.height,

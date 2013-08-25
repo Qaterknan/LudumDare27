@@ -28,3 +28,44 @@ Player.prototype.hasUnit = function ( npcsID ){
 	};
 	return has;
 };
+Player.prototype.checkPowerUp = function ( npcsID , which ){console.log(game.NPCs[npcsID], npcsID)
+	var powerUp = game.NPCs[npcsID].powerUps[which];
+	if(powerUp === undefined){
+		console.warn("Nedefinovaný powerUp "+npcsID+" -> "+which);
+		return false;
+	}
+	var level = this.getPowerUpLevel(npcsID, which);
+	if( powerUp.maximum > level ){
+		if(Math.pow(powerUp.increase+1, level)*powerUp.price > this.scrap){
+			return false;
+		}
+		else return true;
+	}
+	else{
+		return false;
+	}
+};
+Player.prototype.buyPowerUp = function ( npcsID, which ){
+	var cena = this.getPowerUpPrice(npcsID, which);
+	this.scrap -= cena;
+	this.units[npcsID][which] += game.NPCs[npcsID].powerUps[which].bonus;
+	return cena;
+};
+Player.prototype.getPowerUpPrice = function ( npcsID, which ){
+	var powerUp = game.NPCs[npcsID].powerUps[which];
+	if(powerUp === undefined){
+		console.warn("Nedefinovaný powerUp "+npcsID+" -> "+which);
+		return false;
+	}
+	if(this.units[npcsID] === undefined){
+		return powerUp.price;
+	}
+	var level = this.getPowerUpLevel(npcsID,which);
+	return Math.pow(powerUp.increase+1, level)*powerUp.price;
+};
+Player.prototype.getPowerUpLevel = function ( npcsID, which ){
+	if(this.units[npcsID] === undefined){
+		return 0;
+	}
+	return this.units[npcsID][which]/game.NPCs[npcsID].powerUps[which].bonus;
+};

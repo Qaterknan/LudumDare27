@@ -56,21 +56,25 @@ function PlacingButton( unit, options ){
 	this.table = new TableShop(this.unit);
 	this.add(this.table, "tableShop");
 	
-	this.mod1 = new Rectangle({
-		position : new Vector2(200,50),
-		width : 50,
-		height : 20,
-		color : "#ffffff",
+	this.makeIt = new Text({
+		position : new Vector2(100,30),
+		size : 20,
+		value : "Make it: ",
+		color: "#000000",
+		font : "sans-serif",
 		visible : false,
-		mouseup : function (){console.log("start");
-			if(!this.visible) return;
-			else{
-				console.log("olé");
-			}
-		},
 	});
-	this.mod1.toLog = true;
-	this.add(this.mod1);
+	this.add(this.makeIt);
+	this.powerUps = [];
+	var poradi = 0;
+	for(var i in this.unit.powerUps){console.log(i);
+		this.powerUps.push(new PowerUpRow(this.unit, i, {
+			position : new Vector2(100,50+20*poradi),
+			visible : false,
+		}));
+		this.add(this.powerUps[poradi]);
+		poradi++;
+	};
 	
 	this.switchMode(game.player.hasUnit(unit.name.toLowerCase()));
 };
@@ -86,13 +90,20 @@ PlacingButton.prototype.switchMode = function ( bought ){
 		this.price.changeText("BOUGHT!");
 		this.rectangle.color = "#565656";
 		this.secondColor = "#565656";
-		this.mod1.visible = true;
+		this.makeIt.visible = true;
+		for(var i = 0; i < this.powerUps.length;i++){
+			this.powerUps[i].visible =true;
+		};
 	}
 	else{
 		this.bought = false;
 		this.price.changeText("Worth "+this.unit.price+" scrap");
 		this.rectangle.color = "#BFAF99";
 		this.secondColor = "#565656";
+		this.makeIt.visible = false;
+		for(var i = 0; i < this.powerUps.length;i++){
+			this.powerUps[i].visible =false;
+		};
 	}
 	this.table.switchMode(bought);
 };

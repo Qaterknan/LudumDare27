@@ -41,6 +41,14 @@ function NPCs( textures ){
 			Motorbike : 2,
 			RPG : 2,
 		},
+		price : 1,
+		powerUps : {
+			attack : {
+				price : 1,
+				increase : 2,
+				maximum : 3,
+			},
+		},
 		isoTexture : mutantTextureIso,
 		flatTexture : mutantTextureFlat,
 	};
@@ -90,6 +98,14 @@ function NPCs( textures ){
 			Jetpack : 1.5,
 			RPG : 1.5,
 			Kamikadze : 2,
+		},
+		price : 10,
+		powerUps : {
+			attack : {
+				price : 1,
+				increase : 2,
+				maximum : 3,
+			},
 		},
 		isoTexture : riflemanTextureIso,
 		flatTexture : riflemanTextureFlat,
@@ -141,6 +157,14 @@ function NPCs( textures ){
 			Canon : 1.5,
 			RPG : 2,
 			Sniper : 1.5,
+		},
+		price : 100,
+		powerUps : {
+			attack : {
+				price : 1,
+				increase : 2,
+				maximum : 3,
+			},
 		},
 		isoTexture : assassinTextureIso,
 		flatTexture : assassinTextureFlat,
@@ -194,6 +218,14 @@ function NPCs( textures ){
 			Sniper : 1.5,
 			Robot : 1.5,
 		},
+		price : 5000,
+		powerUps : {
+			attack : {
+				price : 1,
+				increase : 2,
+				maximum : 3,
+			},
+		},
 		isoTexture : cannonTextureIso,
 		flatTexture : cannonTextureFlat,
 	};
@@ -246,6 +278,14 @@ function NPCs( textures ){
 			Kamikadze : 1.5,
 			Robot : 2,
 		},
+		price : 1000,
+		powerUps : {
+			attack : {
+				price : 1,
+				increase : 2,
+				maximum : 3,
+			},
+		},
 		isoTexture : jetpackTextureIso,
 		flatTexture : jetpackTextureFlat,
 	};
@@ -295,6 +335,14 @@ function NPCs( textures ){
 			Jetpack : 1.5,
 			Kamikadze : 1.5,
 			Sniper : 1.5,
+		},
+		price : 3000,
+		powerUps : {
+			attack : {
+				price : 1,
+				increase : 2,
+				maximum : 3,
+			},
 		},
 		isoTexture : toyotaTextureIso,
 		flatTexture : toyotaTextureFlat,
@@ -349,6 +397,14 @@ function NPCs( textures ){
 			Kamikadze : 2,
 			Robot : 2,
 		},
+		price : 4500,
+		powerUps : {
+			attack : {
+				price : 1,
+				increase : 2,
+				maximum : 3,
+			},
+		},
 		isoTexture : helicopterTextureIso,
 		flatTexture : helicopterTextureFlat,
 	};
@@ -399,6 +455,14 @@ function NPCs( textures ){
 			Toyota : 1.5,
 			Robot : 1.5,
 		},
+		price : 3000,
+		powerUps : {
+			attack : {
+				price : 1,
+				increase : 2,
+				maximum : 3,
+			},
+		},
 		isoTexture : motorbikeTextureIso,
 		flatTexture : motorbikeTextureFlat,
 	};
@@ -422,4 +486,7 @@ NPCs.prototype.give = function ( context,which, type ){
 		context[i] = this[which][i];
 	};
 	this.switchType(context, type);
+};
+NPCs.prototype.getUnitByName = function ( which ){
+	return this[which.toLowerCase()];
 };

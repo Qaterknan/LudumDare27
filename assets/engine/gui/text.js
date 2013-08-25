@@ -108,6 +108,8 @@ Text.prototype.render = function(ctx) {
 		ctx.fillStyle = this.color;
 
 	var spacing = 0;
+	ctx.save();
+	ctx.rotate(this.rotation);
 	for(var i = 0; i < this.text.length; i++){
 		var x = this.position.x;
 		var y = this.position.y + (i+1) * (this.size) + i * spacing;
@@ -132,4 +134,5 @@ Text.prototype.render = function(ctx) {
 
 		spacing = this.lineSpacing;
 	}
+	ctx.restore();
 };

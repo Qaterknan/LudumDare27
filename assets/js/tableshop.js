@@ -3,6 +3,7 @@ function TableShop( unit, options ){
 	var _this =this;
 	this.visible = true;
 	this.unit = unit;
+	this.bought = false;
 	// Nadpis
 	this.add(new Text({
 		position : new Vector2(100,0),
@@ -10,7 +11,7 @@ function TableShop( unit, options ){
 		value : _this.unit.name,
 		color : "#000000",
 		font : "sans-serif",
-	}));
+	}), "nadpis");
 	// Description
 	this.add(new Text({
 		position : new Vector2(100,20),
@@ -18,7 +19,7 @@ function TableShop( unit, options ){
 		value : _this.unit.description,
 		color : "#000000",
 		font : "sans-serif",
-	}));
+	}), "description");
 	// Staty
 	this.add(new Text({
 		position : new Vector2(100,40),
@@ -77,3 +78,17 @@ function TableShop( unit, options ){
 	}));
 };
 TableShop.prototype = Object.create( Rectangle.prototype );
+TableShop.prototype.switchMode = function ( bought ){
+	if(bought){
+		for(var i in this.children){
+			this.children[i].visible = (i == "description" || i == "nadpis");
+		};
+		this.bought = true;
+	}
+	else{
+		for(var i in this.children){
+			this.children[i].visible = true;
+		};
+		this.bought = false;
+	}
+};

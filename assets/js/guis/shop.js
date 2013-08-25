@@ -34,9 +34,55 @@
 		});
 		trezor.add(hotovost);
 		game.gui.add(trezor);
+		
+		var buyIT = new Button({
+			position : new Vector2(20,20),
+			width : 100,
+			height : 30,
+			rectangle :{
+				color : "#777777",
+				width : 100,
+				height : 30,
+			},
+			text : {
+				value : "Buy IT!",
+				size : 25,
+				position : new Vector2(10,-5),
+				color : "#000000",
+				font : "sans-serif",
+			},
+			mouseup : function (){console.log("BOUGHT!");
+				if(this.thingToBuy){
+					game.player.buy(this.thingToBuy);
+					this.children[0].color = "#777777";
+					hotovost.changeText("Scrap : "+game.player.scrap);
+					for(var i in this.parent.children.strana.children){
+						var child = this.parent.children.strana.children[i];
+						if(child.unit.name.toLowerCase() == this.thingToBuy) child.switchMode(true);
+					};
+					this.thingToBuy = false;
+				}
+			},
+		});
+		buyIT.thingToBuy = false;
+		game.gui.add(buyIT);
+		
 		// Vojáci
 		game.gui.add(new Rectangle(), "strana");
 		game.gui.children.strana.cislo = undefined;
+		
+		game.gui.children.strana.buying = function ( name ){
+			var npcsID = name.toLowerCase();
+			if(game.player.checkBuy(npcsID)){
+				buyIT.children[0].color = "#ffffff";
+				buyIT.thingToBuy = npcsID;
+			}
+			else{
+				buyIT.children[0].color = "#777777";
+				buyIT.thingToBuy = false;
+			}
+		};
+		
 		this.loadPage(0, game);
 	},
 	afterload : function(game){
@@ -46,7 +92,6 @@
 				_this.loadPage(game.gui.children.strana.cislo-1, game);
 		});
 		game.eventhandler.addKeyboardControl(68, undefined, function(){
-			console.log(game);
 			if(game.gui.children.strana.cislo < 1) 
 				_this.loadPage(game.gui.children.strana.cislo+1, game);
 		});

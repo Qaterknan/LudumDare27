@@ -89,9 +89,13 @@ GUIObject.prototype.remove = function (obj){
 
 GUIObject.prototype.mouseHandle = function (x,y,type){
 	for(var i in this.children){
-		this.children[i].mouseHandle(x+this.position.x,y+this.position.y,type);
+		this.children[i].mouseHandle(x-this.position.x,y-this.position.y,type);
 	};
-
+	if(this.toLog && type != "mousemove" && this.visible){
+		console.log(x,y);
+		console.log(this.position.x,this.position.x+this.width,this.position.y,this.position.y+this.height);
+		console.log(this.mouseCollision(x,y))
+	}
 	this.mouseIn = false;
 	if((this[type] || (type == "mousemove" && (this.mouseover || this.mouseout))) && !(this instanceof GUI)){
 		if(this.mouseCollision(x,y)){

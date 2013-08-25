@@ -1,6 +1,12 @@
 function PlacingButton( unit, options ){
 	GUIObject.call(this, options);
 	
+	this.width = 300;
+	this.height = 150;
+	
+	this.pressed = false;
+	this.bought = false;
+	
 	this.rectangle = new Rectangle({
 		width : 300,
 		height : 150,
@@ -22,18 +28,71 @@ function PlacingButton( unit, options ){
 		texture : unit.isoTexture,
 	});
 	this.add(this.picture);
+	
+	//~ Různé výstupy pro koupenou a nekoupenou jednotku
+	this.price = new Text({
+		position : new Vector2(0,0),
+		value : "Worth "+unit.price+" scrap",
+		size : 20,
+		color : "#FFF129",
+		font : "sans-serif",
+		rotation : PI/4,
+	});
+	this.add(this.price);
 		
 	this.mouseup = function (){
+		for(var i in this.parent.children){
+			var sibling = this.parent.children[i];
+			if(sibling.pressed){
+				sibling.pressed = false;
+				sibling.switchColor();
+			}
+		}
 		this.pressed = !this.pressed;
 		this.switchColor();
+		this.parent.buying(this.unit.name);
 	};
 	
-	this.add(new TableShop(this.unit));
+	this.table = new TableShop(this.unit);
+	this.add(this.table, "tableShop");
 	
+	this.mod1 = new Rectangle({
+		position : new Vector2(200,50),
+		width : 50,
+		height : 20,
+		color : "#ffffff",
+		visible : false,
+		mouseup : function (){console.log("start");
+			if(!this.visible) return;
+			else{
+				console.log("olé");
+			}
+		},
+	});
+	this.mod1.toLog = true;
+	this.add(this.mod1);
+	
+	this.switchMode(game.player.hasUnit(unit.name.toLowerCase()));
 };
 PlacingButton.prototype = Object.create( GUIObject.prototype );
 PlacingButton.prototype.switchColor = function (){
 	var cashe = this.rectangle.color;
 	this.rectangle.color = this.secondColor;
 	this.secondColor = cashe;
+};
+PlacingButton.prototype.switchMode = function ( bought ){
+	if(bought){
+		this.bought = true;
+		this.price.changeText("BOUGHT!");
+		this.rectangle.color = "#565656";
+		this.secondColor = "#565656";
+		this.mod1.visible = true;
+	}
+	else{
+		this.bought = false;
+		this.price.changeText("Worth "+this.unit.price+" scrap");
+		this.rectangle.color = "#BFAF99";
+		this.secondColor = "#565656";
+	}
+	this.table.switchMode(bought);
 };

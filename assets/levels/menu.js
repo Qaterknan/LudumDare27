@@ -17,13 +17,15 @@ new function Level(){
 		"motoIso" : "assets/textures/motorbike.png",
 		"motoFlat" : "assets/textures/motorbike_icon.png",
 	};
-	this.sounds = {};
+	this.sounds = {
+		"shop" : "assets/sounds/store.wav",
+	};
 	this.scripts = {
 		"menuGUI" : "assets/js/guis/menu.js",
 	};
 	this.afterLoad = function(){
 		game.gui.GUILoad(this.scripts.menuGUI);
-		
+		game.jukebox.addSounds(this.sounds);
 		game.NPCs = new NPCs(this.textures);
 	};
 };

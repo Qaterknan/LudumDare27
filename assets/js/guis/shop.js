@@ -71,6 +71,26 @@
 		buyIT.thingToBuy = false;
 		game.gui.add(buyIT);
 		
+		game.gui.add(new Button({
+			position : new Vector2(600,20),
+			width : 160,
+			height : 40,
+			rectangle : {
+				color : "#ffffff",
+			},
+			text : {
+				size : 35,
+				color : "#000000",
+				font : "sans-serif",
+				value : "Let's fight!",
+				position : new Vector2(0,0),
+			},
+			mouseup : function (){
+				game.jukebox.objects.shop.stop();
+				game.levelLoad("assets/levels/ingame.js");
+			},
+		}));
+		
 		// Vojáci
 		game.gui.add(new Rectangle(), "strana");
 		game.gui.children.strana.cislo = undefined;

@@ -67,7 +67,7 @@ function PlacingButton( unit, options ){
 	this.add(this.makeIt);
 	this.powerUps = [];
 	var poradi = 0;
-	for(var i in this.unit.powerUps){console.log(i);
+	for(var i in this.unit.powerUps){
 		this.powerUps.push(new PowerUpRow(this.unit, i, {
 			position : new Vector2(100,50+20*poradi),
 			visible : false,

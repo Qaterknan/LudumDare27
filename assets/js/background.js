@@ -2,12 +2,13 @@ function Background( options ){
 	Object2.call(this, options);
 	
 	this.color = options.color === undefined ? "#556000" : options.color;
-	this.position = new Vector2(20,20);
+	this.position = options.position === undefined ? new Vector2() : options.position;
 	this.zIndex = -1;
 	this.collidable = false;
 	this.id = "BG";
-	this.width = options.width === undefined ? game.width-40 : options.width;
-	this.height = options.height === undefined ? game.height-40 : options.height;
+	this.width = options.width === undefined ? game.width : options.width;
+	this.height = options.height === undefined ? game.height : options.height;
+	
 };
 Background.prototype = Object.create( Object2.prototype );
 
@@ -17,5 +18,10 @@ Background.prototype.tick = function (){
 
 Background.prototype.render = function (ctx){
 	ctx.fillStyle = this.color;
+	ctx.save();
+	ctx.translate(-this.width/2,-this.height/2);
 	ctx.fillRect(this.position.x,this.position.y,this.width, this.height);
+	ctx.restore();
+	ctx.fillStyle = "#ff0000";
+	ctx.fillRect(this.position.x,this.position.y, 10,10);
 };

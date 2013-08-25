@@ -4,4 +4,5 @@ function onStart(){
 	game.levelLoad("assets/levels/menu.js", true);
 	
 	game.player = new Player();
+	game.firstTime = true;
 };

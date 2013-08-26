@@ -16,9 +16,18 @@ new function Level(){
 		"heliFlat" : "assets/textures/helicopter_icon.png",
 		"motoIso" : "assets/textures/motorbike.png",
 		"motoFlat" : "assets/textures/motorbike_icon.png",
+		"rpgIso" : "assets/textures/rpg.png",
+		"rpgFlat" : "assets/textures/rpg_icon.png",
+		"roboIso" : "assets/textures/robot.png",
+		"roboFlat" : "assets/textures/robot_icon.png",
+		"sniIso" : "assets/textures/sniper.png",
+		"sniFlat" : "assets/textures/sniper_icon.png",
+		"kamiIso" : "assets/textures/kamikadze.png",
+		"kamiFlat" : "assets/textures/kamikadze_icon.png",
 	};
 	this.sounds = {
 		"shop" : "assets/sounds/store.wav",
+		"tenSeconds" : "assets/sounds/10sekund.wav",
 	};
 	this.scripts = {
 		"menuGUI" : "assets/js/guis/menu.js",

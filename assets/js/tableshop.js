@@ -19,6 +19,7 @@ function TableShop( unit, options ){
 		value : _this.unit.description,
 		color : "#000000",
 		font : "sans-serif",
+		width : 150,
 	}), "description");
 	// Staty
 	this.add(new Text({
@@ -49,39 +50,41 @@ function TableShop( unit, options ){
 	for(var i in this.unit.criticals){
 		if(this.unit.criticals[i] == 2){
 			deadly = deadly + i + " ";
-			if(deadly.length > 20){
-				deadly = deadly.substr(0,17);
-				deadly = deadly + "...";
-			}
+			//~ if(deadly.length > 20){
+				//~ deadly = deadly.substr(0,17);
+				//~ deadly = deadly + "...";
+			//~ }
 		}
 		else{
 			effective = effective + i + " ";
-			if(effective.length > 19){
-				effective = effective.substr(0,16);
-				effective = effective + "...";
-			}
+			//~ if(effective.length > 19){
+				//~ effective = effective.substr(0,16);
+				//~ effective = effective + "...";
+			//~ }
 		}
 	};
 	this.add(new Text({
-		position : new Vector2(100,100),
-		size : 14,
+		position : new Vector2(100,107),
+		size : 10,
 		value : "Effective: "+effective,
-		color : "#000000",
+		color : "#C77100",
 		font : "sans-serif",
-	}));
+		width : 190,
+	}), "effective");
 	this.add(new Text({
-		position : new Vector2(100,120),
-		size : 14,
+		position : new Vector2(100,128),
+		size : 10,
 		value : "Deadly: "+deadly,
-		color : "#000000",
+		color : "#FF0400",
 		font : "sans-serif",
-	}));
+		width : 190,
+	}), "deadly");
 };
 TableShop.prototype = Object.create( Rectangle.prototype );
 TableShop.prototype.switchMode = function ( bought ){
 	if(bought){
 		for(var i in this.children){
-			this.children[i].visible = (i == "description" || i == "nadpis");
+			this.children[i].visible = (i == "description" || i == "nadpis" || i == "effective" || i == "deadly");
 		};
 		this.bought = true;
 	}

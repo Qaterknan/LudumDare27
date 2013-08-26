@@ -6,6 +6,7 @@ function Rectangle(options){
 
 	this.texture = options.texture === undefined ? false : options.texture;
 	this.color = options.color === undefined ? "#AAAAAA" : options.color;
+	this.alpha = options.alpha === undefined ? 1 : options.alpha;
 }
 Rectangle.prototype = new GUIObject();
 Rectangle.prototype.render = function(ctx){
@@ -18,6 +19,7 @@ Rectangle.prototype.render = function(ctx){
 	}
 	else {
 		ctx.fillStyle = this.color;
+		ctx.globalAlpha = this.alpha;
 		ctx.fillRect(0, 0, this.width, this.height);
 	}
 

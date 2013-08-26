@@ -51,6 +51,9 @@ Unit.prototype.move = function (){
 	this.position.x += dx;
 	this.position.y += dy;
 	var colls = game.checkCollisions(this);
+	//~ if(!this.logged){
+		//~ this.logged = true;
+	//~ }
 	if(colls.length){
 		this.position.x -= dx;
 		this.position.y -= dy;
@@ -61,14 +64,14 @@ Unit.prototype.move = function (){
 		}
 	}
 	var bg = game.getChild("BG");
-	var inX = this.position.x + this.width/2 >= bg.position.x+bg.width || this.position.x - this.width/2 <= bg.position.x;
-	var inY = this.position.y + this.height/2 >= bg.position.x+bg.height || this.position.y - this.height/2 <= bg.position.y;
-	if( inX || inY ){
+	var inX = this.width/2+this.position.x < bg.width/2 && this.position.x-this.width/2 > -bg.width/2;
+	var inY = this.height/2+this.position.y < bg.height/2 && this.position.y-this.height/2 > -bg.height/2;
+	if( !(inX && inY) ){
 		this.position.x -= dx;
 		this.position.y -= dy;
 	}
 };
-Unit.prototype.scan = function (){console.log("skanuji")
+Unit.prototype.scan = function (){
 	var readyToGo = false;
 	var shooting = false;
 	for(var i in game.children){

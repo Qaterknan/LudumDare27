@@ -4,6 +4,29 @@ function Player (){
 	this.units = { 
 		// mutant : { attack : 1,}, => hráč má zpřístupněného mutanta a
 		// koupil vylepšení útoku o jeden bod
+		mutant : {
+			attack : 0,
+			health : 0,
+			speed : 0,
+		},
+		rifleman : {
+			attack : 0,
+		},
+		assassin : {
+			attack : 0,
+		},
+		jetpack : {
+			attack : 0,
+		},
+		cannon : {
+			attack : 0,
+		},
+		motorbike : {
+			attack : 0,
+		},
+		robot : {
+			attack : 0,
+		},
 	};
 	this.countdown = false;
 };

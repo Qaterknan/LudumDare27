@@ -25,10 +25,23 @@ function PlacingButton( unit, options ){
 		width : pwidth,
 		height : pheight,
 		zaIndex : 1,
-		texture : unit.isoTexture,
+		texture : Object.create( unit.isoTexture ),
 	});
 	this.add(this.picture);
-	
+	this.ikona = new Rectangle({
+		position : new Vector2(260,5),
+		width:32,
+		height:32,
+		texture:Object.create(unit.flatTexture),
+	});
+	this.add(this.ikona);
+	this.ikona.add(new Text({
+		value : unit.amountPerSquad,
+		color : "#ffffff",
+		size : 20,
+		position : new Vector2(-10,-5),
+		font : "sans-serif",
+	}));
 	//~ Různé výstupy pro koupenou a nekoupenou jednotku
 	this.price = new Text({
 		position : new Vector2(0,0),

@@ -8,12 +8,17 @@ function NPCs( textures ){
 		animations : {
 			walking : {
 				start : 0,
-				end : 3,
+				end : 4,
 				speed : 200,
 			},
 			standing : {
 				start:0,
 				end:0,
+				speed : 200,
+			},
+			striking : {
+				start : 3,
+				end : 4,
 				speed : 200,
 			},
 		},
@@ -37,11 +42,12 @@ function NPCs( textures ){
 		clipSize : false,
 		criticals : {
 			Toyota : 1.5,
-			Canon : 2,
+			Cannon : 2,
 			Motorbike : 2,
 			RPG : 2,
 		},
 		price : 1,
+		amountPerSquad : 30,
 		powerUps : {
 			attack : {
 				price : 1,
@@ -74,7 +80,7 @@ function NPCs( textures ){
 		animations : {
 			walking : {
 				start : 0,
-				end : 3,
+				end : 4,
 				speed : 200,
 			},
 			standing : {
@@ -92,7 +98,7 @@ function NPCs( textures ){
 	var riflemanTextureFlat = new Texture(textures.rifleFlat);
 	this.rifleman = {
 		name : "Rifleman",
-		description : "Random rifleman",
+		description : "I used to shoot rabbits",
 		isoWidth : 65,
 		isoHeight : 81,
 		flatWidth : 40,
@@ -113,6 +119,7 @@ function NPCs( textures ){
 			Kamikadze : 2,
 		},
 		price : 10,
+		amountPerSquad : 20,
 		powerUps : {
 			attack : {
 				price : 1,
@@ -133,7 +140,7 @@ function NPCs( textures ){
 		animations : {
 			walking : {
 				start : 0,
-				end : 3,
+				end : 4,
 				speed : 200,
 			},
 			standing : {
@@ -168,11 +175,12 @@ function NPCs( textures ){
 		criticals : {
 			Rifleman : 1.5,
 			Toyota : 1.5,
-			Canon : 1.5,
+			Cannon : 1.5,
 			RPG : 2,
 			Sniper : 1.5,
 		},
 		price : 100,
+		amountPerSquad : 5,
 		powerUps : {
 			attack : {
 				price : 1,
@@ -193,7 +201,7 @@ function NPCs( textures ){
 		animations : {
 			walking : {
 				start : 0,
-				end : 1,
+				end : 2,
 				speed : 200,
 			},
 			standing : {
@@ -201,10 +209,10 @@ function NPCs( textures ){
 				end:0,
 				speed : 200,
 			},
-			striking : {
+			shooting : {
 				start:2,
 				end:3,
-				speed:200
+				speed:300,
 			},
 		},
 	});
@@ -234,6 +242,7 @@ function NPCs( textures ){
 			Robot : 1.5,
 		},
 		price : 5000,
+		amountPerSquad : 1,
 		powerUps : {
 			attack : {
 				price : 1,
@@ -254,7 +263,7 @@ function NPCs( textures ){
 		animations : {
 			walking : {
 				start : 0,
-				end : 3,
+				end : 4,
 				speed : 200,
 			},
 			standing : {
@@ -262,7 +271,7 @@ function NPCs( textures ){
 				end:0,
 				speed : 200,
 			},
-			striking : {
+			shooting : {
 				start:3,
 				end:4,
 				speed:200
@@ -295,6 +304,7 @@ function NPCs( textures ){
 			Robot : 2,
 		},
 		price : 1000,
+		amountPerSquad : 4,
 		powerUps : {
 			attack : {
 				price : 1,
@@ -315,7 +325,7 @@ function NPCs( textures ){
 		animations : {
 			walking : {
 				start : 0,
-				end : 1,
+				end : 2,
 				speed : 200,
 			},
 			standing : {
@@ -326,7 +336,7 @@ function NPCs( textures ){
 			shooting : {
 				start:2,
 				end:5,
-				speed:200
+				speed:125
 			},
 		},
 	});
@@ -354,6 +364,7 @@ function NPCs( textures ){
 			Sniper : 1.5,
 		},
 		price : 3000,
+		amountPerSquad : 2,
 		powerUps : {
 			attack : {
 				price : 1,
@@ -374,7 +385,7 @@ function NPCs( textures ){
 		animations : {
 			walking : {
 				start : 0,
-				end : 3,
+				end : 4,
 				speed : 200,
 			},
 			standing : {
@@ -385,7 +396,7 @@ function NPCs( textures ){
 			shooting : {
 				start:4,
 				end:7,
-				speed:200
+				speed:75,
 			},
 		},
 	});
@@ -416,6 +427,7 @@ function NPCs( textures ){
 			Robot : 2,
 		},
 		price : 4500,
+		amountPerSquad : 1,
 		powerUps : {
 			attack : {
 				price : 1,
@@ -436,7 +448,7 @@ function NPCs( textures ){
 		animations : {
 			walking : {
 				start : 0,
-				end : 1,
+				end : 2,
 				speed : 200,
 			},
 			standing : {
@@ -475,6 +487,7 @@ function NPCs( textures ){
 			Robot : 1.5,
 		},
 		price : 3000,
+		amountPerSquad : 5,
 		powerUps : {
 			attack : {
 				price : 1,
@@ -485,6 +498,253 @@ function NPCs( textures ){
 		},
 		isoTexture : motorbikeTextureIso,
 		flatTexture : motorbikeTextureFlat,
+	};
+	
+	// RPG
+	
+	var rpgTextureIso = new Texture(textures.rpgIso, {
+		totalFrames : 8,
+		currentAnimation : "walking",
+		animations : {
+			walking : {
+				start : 0,
+				end : 4,
+				speed : 200,
+			},
+			standing : {
+				start:0,
+				end:0,
+				speed : 200,
+			},
+			shooting : {
+				start:5,
+				end:7,
+				speed:200
+			},
+		},
+	});
+	var rpgTextureFlat = new Texture(textures.rpgFlat);
+	this.rpg = {
+		name : "RPG",
+		description : "Too bad you were sitting in the car",
+		isoWidth : 99,
+		isoHeight : 77,
+		flatWidth : 40,
+		flatHeight : 40,
+		health : 100,
+		attack : 250,
+		speed : 0.3,
+		cadency : 6500,
+		defence : 1,
+		shootingRange : 300,
+		scanRange : 320,
+		reloadTime : 2000,
+		clipSize : 1,
+		criticals : {
+			Toyota : 2,
+			Cannon : 2,
+			Helicopter : 2,
+			Motorbike : 1.5,
+			Robot : 2,
+		},
+		price : 3000,
+		amountPerSquad : 4,
+		powerUps : {
+			attack : {
+				price : 1,
+				increase : 2,
+				maximum : 3,
+				bonus : 5,
+			},
+		},
+		isoTexture : rpgTextureIso,
+		flatTexture : rpgTextureFlat,
+	};
+	
+	// KAMIKADZE
+	
+	var kamikadzeTextureIso = new Texture(textures.kamiIso, {
+		totalFrames : 3,
+		currentAnimation : "walking",
+		animations : {
+			walking : {
+				start : 0,
+				end : 1,
+				speed : 200,
+			},
+			standing : {
+				start:0,
+				end:0,
+				speed : 200,
+			},
+			striking : {
+				start:1,
+				end:2,
+				speed:200
+			},
+		},
+	});
+	var kamikadzeTextureFlat = new Texture(textures.kamiFlat);
+	this.kamikadze = {
+		name : "Kamikadze",
+		description : "BOOM!!!",
+		isoWidth : 33,
+		isoHeight : 36,
+		flatWidth : 40,
+		flatHeight : 40,
+		health : 200,
+		attack : 400,
+		speed : 7,
+		cadency : 1,
+		defence : 0.9,
+		shootingRange : false,
+		scanRange : 300,
+		reloadTime : false,
+		clipSize : false,
+		criticals : {
+			Mutant : 2,
+			Assassin : 1.5,
+			Cannon : 1.5,
+			Motorbike : 1.5,
+			RPG : 1.5,
+			Robot : 1.5,
+		},
+		price : 500,
+		amountPerSquad : 1,
+		powerUps : {
+			attack : {
+				price : 1,
+				increase : 2,
+				maximum : 3,
+				bonus : 5,
+			},
+		},
+		isoTexture : kamikadzeTextureIso,
+		flatTexture : kamikadzeTextureFlat,
+	};
+	
+	// SNIPER
+	
+	var sniperTextureIso = new Texture(textures.sniIso, {
+		totalFrames : 5,
+		currentAnimation : "walking",
+		animations : {
+			walking : {
+				start : 0,
+				end : 3,
+				speed : 200,
+			},
+			standing : {
+				start:0,
+				end:0,
+				speed : 200,
+			},
+			shooting : {
+				start:3,
+				end:4,
+				speed:200
+			},
+		},
+	});
+	var sniperTextureFlat = new Texture(textures.sniFlat);
+	this.sniper = {
+		name : "Sniper",
+		description : "You can't kill what you can't see.",
+		isoWidth : 74,
+		isoHeight : 70,
+		flatWidth : 40,
+		flatHeight : 40,
+		health : 150,
+		attack : 150,
+		speed : 0.75,
+		cadency : 2500,
+		defence : 1,
+		shootingRange : 600,
+		scanRange : 600,
+		reloadTime : 1000,
+		clipSize : 6,
+		criticals : {
+			Mutant : 1.5,
+			Rifleman : 1.5,
+			Jetpack : 2,
+			Helicopter : 1.5,
+			Motorbike : 1.5,
+			RPG : 2,
+			Kamikadze : 1.5,
+		},
+		price : 1500,
+		amountPerSquad : 1,
+		powerUps : {
+			attack : {
+				price : 1,
+				increase : 2,
+				maximum : 3,
+				bonus : 5,
+			},
+		},
+		isoTexture : sniperTextureIso,
+		flatTexture : sniperTextureFlat,
+	};
+	
+	// ROBOT
+	
+	var robotTextureIso = new Texture(textures.roboIso, {
+		totalFrames : 6,
+		currentAnimation : "walking",
+		animations : {
+			walking : {
+				start : 0,
+				end : 5,
+				speed : 200,
+			},
+			standing : {
+				start:0,
+				end:0,
+				speed : 200,
+			},
+			shooting : {
+				start:0,
+				end:5,
+				speed:200
+			},
+		},
+	});
+	var robotTextureFlat = new Texture(textures.roboFlat);
+	this.robot = {
+		name : "Robot",
+		description : "Quicker than animation sequence!",
+		isoWidth : 74,
+		isoHeight : 51,
+		flatWidth : 40,
+		flatHeight : 40,
+		health : 160,
+		attack : 4,
+		speed : 2.5,
+		cadency : 10,
+		defence : 0.5,
+		shootingRange : 350,
+		scanRange : 350,
+		reloadTime : 300,
+		clipSize : 256,
+		criticals : {
+			Mutant : 1.5,
+			Assassin : 2,
+			Rifleman : 1.5,
+			Toyota : 1.5,
+			Sniper : 2,
+		},
+		price : 6000,
+		amountPerSquad : 2,
+		powerUps : {
+			attack : {
+				price : 1,
+				increase : 2,
+				maximum : 3,
+				bonus : 5,
+			},
+		},
+		isoTexture : robotTextureIso,
+		flatTexture : robotTextureFlat,
 	};
 };
 
@@ -503,6 +763,11 @@ NPCs.prototype.switchType = function (context, type){
 };
 NPCs.prototype.give = function ( context,which, type ){
 	for(var i in this[which]){
+		if(i == "isoTexture" || i == "flatTexture"){
+			console.log("nový objekt?");
+			context[i] = Object.create( this[which][i] );
+			continue;
+		}
 		context[i] = this[which][i];
 	};
 	this.switchType(context, type);

@@ -2,6 +2,7 @@ function Camera(){
 	this.position = new Vector2();
 	this.velocity = new Vector2();
 	this.origin = new Vector2();
+	this.zoom = 1;
 
 	this.shaking = false;
 	this.acceleration = 0.1;

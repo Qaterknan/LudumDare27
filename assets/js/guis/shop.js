@@ -8,7 +8,7 @@
 			width : game.canvas.width,
 			height : game.canvas.height,
 			color : "#1E2838",
-			alpha : 0.3,
+			alpha : 0.8,
 		}));
 		
 		game.gui.add(new Text({
@@ -116,7 +116,7 @@
 				_this.loadPage(game.gui.children.strana.cislo-1, game);
 		});
 		game.eventhandler.addKeyboardControl(68, undefined, function(){
-			if(game.gui.children.strana.cislo < 1) 
+			if(game.gui.children.strana.cislo < 2) 
 				_this.loadPage(game.gui.children.strana.cislo+1, game);
 		});
 	},
@@ -130,7 +130,8 @@
 			game.gui.children.strana.remove(game.gui.children.strana.children[i]);
 		};
 		var pages = [["mutant","assassin","rifleman","jetpack"],
-		 ["toyota","cannon","helicopter","motorbike"]];
+			["toyota","cannon","helicopter","motorbike"],
+			["rpg","kamikadze","sniper","robot"]];
 		game.gui.children.strana.add( new PlacingButton(game.NPCs[pages[which][0]], {
 			position : new Vector2(80,140),
 		}));

@@ -85,6 +85,7 @@ Game.prototype.render = function (ctx){
 	// GUI je na hře
 	ctx.save();
 	ctx.translate(-this.camera.position.x+this.canvas.width/2,-this.camera.position.y+this.canvas.height/2);
+	ctx.scale(this.camera.zoom,this.camera.zoom);
 	if(this.polygonBorder){
 		ctx.save();
 		this.polygonBorder.fill(ctx,this.clearColor,"clip");

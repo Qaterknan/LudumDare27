@@ -26,6 +26,15 @@ new function Level(){
 		"kamiFlat" : "assets/textures/kamikadze_icon.png",
 		
 		"mainScreen" : "assets/textures/main_screen1.png",
+		"storeBack" : "assets/textures/store_background.jpg",
+		
+		"bush" : "assets/textures/bush.png",
+		"acidPool" : "assets/textures/nature1.png",
+		"tires" : "assets/textures/nature2.png",
+		"tree" : "assets/textures/nature3.png",
+		"trap" : "assets/textures/trap.png",
+		"wire" : "assets/textures/wire.png",
+		"wreck" : "assets/textures/wreck.png",
 	};
 	this.sounds = {
 		"shop" : "assets/sounds/store.wav",
@@ -38,5 +47,6 @@ new function Level(){
 		game.gui.GUILoad(this.scripts.menuGUI);
 		game.jukebox.addSounds(this.sounds);
 		game.NPCs = new NPCs(this.textures);
+		game.enviroment = new Enviroment(this.textures);
 	};
 };

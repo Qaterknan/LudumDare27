@@ -7,7 +7,7 @@
 			position : new Vector2(0,0),
 			width : game.canvas.width,
 			height : game.canvas.height,
-			color : "#1E2838",
+			color : "#1E2838",//~ ,texture : new Texture(game.loader.textures["assets/textures/store_background.jpg"], {})
 			alpha : 0.8,
 		}));
 		

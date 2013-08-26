@@ -59,7 +59,9 @@ new function Level(){
 					team : 2,
 				}));
 			};
-			
+			for(var i = 0; i < 30; i++){
+				game.add(game.enviroment.getRandom(new Vector2(-bgWidth,-bgHeight),new Vector2(bgWidth,bgHeight)));
+			};
 			//~ Vytváření nepřátelského vojska
 			//~ var actualScrap = game.player.enemyScrap;
 			//~ for(var i in game.NPCs){

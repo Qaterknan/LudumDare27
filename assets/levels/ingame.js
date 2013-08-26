@@ -1,5 +1,7 @@
 new function Level(){
-	this.textures = {};
+	this.textures = {
+		"bgtexture" : "assets/textures/ground.png",
+	};
 	this.sounds = {
 		
 	};
@@ -19,7 +21,7 @@ new function Level(){
 		}
 		else {
 			game.camera.position.set(0,0);
-			game.camera.zoom = 0;
+			game.camera.zoom = 1;
 			game.clearColor = "#786446";
 			var bgWidth = 1600;
 			var bgHeight = 1200;
@@ -29,10 +31,16 @@ new function Level(){
 				height : bgHeight,
 				position : new Vector2(0,0),
 				color : "#0a0a0a",
+				texture : new Texture(_this.textures.bgtexture, {
+					repeat : true,
+				}),
 			}));
-			game.gui.GUILoad(this.scripts.observing);
+			game.gui.GUILoad(this.scripts.planning);
 			
-			var mut = new Mutant({position : new Vector2(-100,-100), team : 2});
+			var mut = new Mutant({
+				position : new Vector2(-100,-100),
+				team : 2
+			});
 			game.NPCs.switchType(mut, "flat");
 			game.add(mut);
 		}

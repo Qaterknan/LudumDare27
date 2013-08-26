@@ -68,7 +68,7 @@ Game.prototype.tick = function (){
 	this.eventhandler.loop();
 
 	this.tickChildren();
-
+	
 	game.gui.tick();
 	this.camera.update();
 	

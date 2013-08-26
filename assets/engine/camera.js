@@ -3,6 +3,8 @@ function Camera(){
 	this.velocity = new Vector2();
 	this.origin = new Vector2();
 	this.zoom = 1;
+	this.finalZoom = false;
+	this.zoomSpeed = 0.01;
 
 	this.shaking = false;
 	this.acceleration = 0.1;
@@ -39,6 +41,17 @@ Camera.prototype.update = function (){
 	// this.position.add(this.velocity);
 	this.position.x += (this.origin.x - this.position.x)*this.acceleration;
 	this.position.y += (this.origin.y - this.position.y)*this.acceleration;
+	if(Math.abs(this.finalZoom - this.zoom) > 0.05 && this.finalZoom){
+		if(this.zoom > this.finalZoom){
+			this.zoom -= this.zoomSpeed;
+		}
+		else{
+			this.zoom += this.zoomSpeed;
+		}
+	}
+	else{
+		this.finalZoom = false;
+	}
 	this.tick();
 };
 

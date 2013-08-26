@@ -58,9 +58,10 @@
 		game.gui.add(new Text({
 			value : "10",
 			color : "#ff0000",
-			position : new Vector2(250,50),
+			position : new Vector2(400,50),
 			size : 300,
 			font : "sans-serif",
+			alpha : 0.5,
 		}), "countdown");
 		
 		game.gui.add(new Rectangle({
@@ -79,9 +80,20 @@
 			game.player.countdown -= 1;
 			game.gui.children.countdown.changeText(game.player.countdown+"");
 			if(game.player.countdown <= 0){
+				game.player.countdown = false;
 				window.clearInterval(interval);
-				game.gui.GUILoad(game.loader.scripts["assets/js/guis/planning.js"]);
-				//~ game.paused = false;
+				game.gui.remove(game.gui.children.countdown);
+				game.eventhandler.resetControls();
+				game.gui.addControls();
+				game.gui.GUILoad(game.loader.scripts["assets/js/guis/observing.js"]);
+				game.paused = false;
+				game.camera.origin = new Vector2(0,0);
+				game.camera.finalZoom = 1;
+				for(var i in game.children){
+					if(game.children[i] instanceof Unit){
+						game.NPCs.switchType(game.children[i], "iso")
+					}
+				}
 			}
 		}, 1000);
 	},

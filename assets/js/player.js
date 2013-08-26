@@ -1,6 +1,7 @@
 function Player (){
 	this.mode = "flat"; // flat/isometric/shopping
 	this.scrap = 100;
+	this.currentScrap = 0;
 	this.units = { 
 		// mutant : { attack : 1,}, => hráč má zpřístupněného mutanta a
 		// koupil vylepšení útoku o jeden bod
@@ -29,6 +30,7 @@ function Player (){
 		},
 	};
 	this.countdown = false;
+	this.won = false;
 };
 Player.prototype.checkBuy = function ( npcsID ){
 	var possibleToBuy = !this.hasUnit( npcsID );

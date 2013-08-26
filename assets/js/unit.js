@@ -20,8 +20,7 @@ function Unit( options ){
 	
 	this.scanRange = options.scanRange === undefined ? 100 : options.scanRange;
 	this.collisionType = "hitbox";
-	this.hitbox.x = -this.width/2;
-	this.hitbox.y = -this.height/2;
+	this.hitbox.height = this.height/2;
 	this.logged = false;
 	this.dying = false;
 	this.target = false;
@@ -29,6 +28,7 @@ function Unit( options ){
 };
 Unit.prototype = Object.create( Object2.prototype );
 Unit.prototype.render = function (ctx){
+	this.zIndex = this.position.y;
 	if(this.texture){
 		if(this.team == 2) this.texture.flip = "x";
 		Object2.prototype.render.call(this,ctx);
@@ -55,18 +55,33 @@ Unit.prototype.move = function (){
 		//~ this.logged = true;
 	//~ }
 	if(colls.length){
+		this.texture.switchAnimation("standing");
 		this.position.x -= dx;
 		this.position.y -= dy;
+		var sameTeam = true;
 		for(var i in colls){
 			if(colls[i] == this.target){
 				this.strike(this.target);
 			}
+			if(colls[i].team != this.team){
+				sameTeam = false;
+			}
+		};
+		if(sameTeam){
+			this.position.x += dx;
+			this.position.y += dy;
+			this.texture.switchAnimation("walking");
 		}
+	}
+	else{
+		this.texture.switchAnimation("walking");
 	}
 	var bg = game.getChild("BG");
 	var inX = this.width/2+this.position.x < bg.width/2 && this.position.x-this.width/2 > -bg.width/2;
 	var inY = this.height/2+this.position.y < bg.height/2 && this.position.y-this.height/2 > -bg.height/2;
 	if( !(inX && inY) ){
+		bg.damage(this.attack, this);
+		this.texture.switchAnimation("striking");
 		this.position.x -= dx;
 		this.position.y -= dy;
 	}
@@ -84,6 +99,7 @@ Unit.prototype.scan = function (){
 				if(child.position.distanceToSquared( this.position ) < this.shootingRange*this.shootingRange){
 					this.shoot(child);
 					shooting = true;
+					this.texture.switchAnimation("shooting");
 				}
 				continue;
 			}
@@ -119,7 +135,6 @@ Unit.prototype.takeDamage = function ( attacker ){// Sem později přidat partic
 	this.health -= damage;
 	if(this.health <= 0){
 		this.dying = true;
-		console.log("death loop");
 		for(var i in game.children){
 			if(game.children[i] instanceof Unit){
 				if(game.children[i].target == this){
@@ -130,6 +145,7 @@ Unit.prototype.takeDamage = function ( attacker ){// Sem později přidat partic
 	}
 };
 Unit.prototype.strike = function ( cil ){ // Sem později přidat particle effects
+	this.texture.switchAnimation("striking");
 	if(!this.recharging){
 		cil.takeDamage(this);
 		this.recharging = true;

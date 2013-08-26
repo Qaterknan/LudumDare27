@@ -80,7 +80,7 @@ function NPCs( textures ){
 		animations : {
 			walking : {
 				start : 0,
-				end : 4,
+				end : 3,
 				speed : 200,
 			},
 			standing : {
@@ -201,7 +201,7 @@ function NPCs( textures ){
 		animations : {
 			walking : {
 				start : 0,
-				end : 2,
+				end : 1,
 				speed : 200,
 			},
 			standing : {

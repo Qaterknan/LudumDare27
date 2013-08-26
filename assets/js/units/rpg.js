@@ -10,5 +10,21 @@ function RPG( options ){
 		this.speed += game.player.units.robot.speed;
 		this.reloadTime -= game.player.units.robot.reloadTime;
 	}
+	
+	this.areaOfDamage = 25;
 };
 RPG.prototype = Object.create(Unit.prototype);
+RPG.prototype.strike = function ( cil ){ // Sem později přidat particle effects
+	this.texture.switchAnimation("striking");
+	if(!this.recharging){
+		for(var i in game.children){
+			if(game.children[i] instanceof Unit){
+				if(cil.position.distanceToSquared( game.children[i].position ) < this.areaOfDamage*this.areaOfDamage){
+					game.children[i].takeDamage(this);
+				}
+			}
+		};
+		this.recharging = true;
+		this.addTimeEvent(this.cadency, function (ja){ja.recharging = false;}, false);
+	}
+};

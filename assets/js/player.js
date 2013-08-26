@@ -10,6 +10,11 @@ function Player (){
 			health : 0,
 			speed : 0,
 		},
+		kamikadze : {
+			attack : 0,
+			health : 0,
+			speed : 0,
+		},
 	};
 	this.countdown = false;
 	this.won = false;

@@ -29,7 +29,7 @@ function Texture(image, options){
 }
 
 Texture.prototype.switchAnimation = function(name) {
-	if(this.animations[name] && (this.currentAnimation != this.animations[name] || this.ended)){
+	if(this.animations[name] && (this.currentAnimation != this.animations[name] )){
 		this.currentAnimation = this.animations[name];
 
 		this.frames = this.currentAnimation.end - this.currentAnimation.start + 1;

@@ -1,6 +1,6 @@
 function Player (){
 	this.mode = "flat"; // flat/isometric/shopping
-	this.scrap = 100;
+	this.scrap = 200;
 	this.currentScrap = 0;
 	this.units = { 
 		// mutant : { attack : 1,}, => hráč má zpřístupněného mutanta a
@@ -10,27 +10,10 @@ function Player (){
 			health : 0,
 			speed : 0,
 		},
-		rifleman : {
-			attack : 0,
-		},
-		assassin : {
-			attack : 0,
-		},
-		jetpack : {
-			attack : 0,
-		},
-		cannon : {
-			attack : 0,
-		},
-		motorbike : {
-			attack : 0,
-		},
-		robot : {
-			attack : 0,
-		},
 	};
 	this.countdown = false;
 	this.won = false;
+	this.enemyScrap = 100;
 };
 Player.prototype.checkBuy = function ( npcsID ){
 	var possibleToBuy = !this.hasUnit( npcsID );
@@ -53,7 +36,7 @@ Player.prototype.hasUnit = function ( npcsID ){
 	};
 	return has;
 };
-Player.prototype.checkPowerUp = function ( npcsID , which ){console.log(game.NPCs[npcsID], npcsID)
+Player.prototype.checkPowerUp = function ( npcsID , which ){
 	var powerUp = game.NPCs[npcsID].powerUps[which];
 	if(powerUp === undefined){
 		console.warn("Nedefinovaný powerUp "+npcsID+" -> "+which);

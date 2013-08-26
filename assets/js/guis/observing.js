@@ -44,6 +44,7 @@
 			if(game.player.won){
 				game.player.scrap += game.player.currentScrap;
 				game.player.currentScrap = 0;
+				game.player.enemyScrap += 200;
 				game.player.won = false;
 				game.camera.position.set(0,0);
 				game.camera.origin.set(0,0);
@@ -60,7 +61,10 @@
 			size : 60,
 			font : "sans-serif",
 		}), "playerHealth");
-		
+		game.gui.children.playerHealth.tick = function  (){
+			if(game.getChild("BG").playerHealth+"" != this.value)
+				this.changeText(game.getChild("BG").playerHealth+"");
+		};
 		game.gui.add(new Text({
 			value : game.getChild("BG").enemyHealth+"",
 			position : new Vector2(700,400),
@@ -91,7 +95,7 @@
 		game.gui.children.currentScrap.currentScrap = 0;
 		game.gui.children.currentScrap.tick = function (){
 			if(this.currentScrap != game.player.currentScrap)
-				this.changeText("Current scrap: "+game.player.currentScrap);
+				this.children[1].changeText("Current scrap: "+game.player.currentScrap);
 		};
 		game.gui.add(new Text({
 			visible : false,
@@ -111,31 +115,37 @@
 				if(game.children[i].team == 2)
 					teamEnemy = true;
 			};
-			if(!teamPlayer || !teamEnemy){
+			if((!teamPlayer && !teamEnemy) && !game.player.won){
 				var bg = game.getChild("BG");
 				if(bg.playerHealth > bg.enemyHealth){
+					game.player.currentScrap += 100-bg.enemyHealth;
 					game.player.won = true;
 					game.gui.children.goShop.changeText("You won!");
 				}
 				else if(bg.playerHealth == bg.enemyHealth){
-					if(teamPlayer){
-						game.player.won = true;
-						game.gui.children.goShop.changeText("You won!");
-					}
-					else{
-						game.player.won = true;
-						game.player.currentScrap = 0;
-						game.gui.children.goShop.changeText("You lost!");
-					}
+					game.player.enemyScrap -= 100;
+					game.player.won = true;
+					game.player.currentScrap = 0;
+					game.gui.children.goShop.changeText("Draw!");
 				}
 				else{
+					game.player.enemyScrap -= 100;
 					game.player.won = true;
 					game.player.currentScrap = 0;
 					game.gui.children.goShop.changeText("You lost!");
 				}
 				game.gui.children.goShop.visible = true;
+				game.gui.children.pressEsc.visible = true;
 			}
 		};
+		game.gui.add(new Text({
+			position : new Vector2(265,300),
+			color : "#000000",
+			value : "Press escape to continue",
+			size : 20,
+			font : "sans-serif",
+			visible : false,
+		}), "pressEsc");
 	},
 	afterload : function(){
 		return;

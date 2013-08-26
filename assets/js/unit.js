@@ -135,6 +135,8 @@ Unit.prototype.takeDamage = function ( attacker ){// Sem později přidat partic
 	this.health -= damage;
 	if(this.health <= 0){
 		this.dying = true;
+		if(this.team == 2)
+			game.player.currentScrap += Math.ceil(10/this.amountPerSquad);
 		for(var i in game.children){
 			if(game.children[i] instanceof Unit){
 				if(game.children[i].target == this){

@@ -22,6 +22,9 @@ function PowerUpRow( unit, aspect, options ){
 		attack : "Stronger",
 		health : "Tougher",
 		speed : "Faster",
+		reloadTime : "Rld. fast",
+		defence : "Armoured",
+		cadency : "Quicker",
 	};
 	this.text = new Text({
 		color : "#000000",

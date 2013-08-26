@@ -37,12 +37,22 @@ new function Level(){
 			}));
 			game.gui.GUILoad(this.scripts.planning);
 			
-			var mut = new Mutant({
-				position : new Vector2(-100,-100),
-				team : 2
-			});
-			game.NPCs.switchType(mut, "flat");
-			game.add(mut);
+			var actualScrap = game.player.enemyScrap;
+			for(var i in game.NPCs){
+				if(!game.NPCs[i].name) continue;
+				if(game.NPCs[i].price <= game.player.enemyScrap){
+					var konst = game.NTC[game.NPCs[i].name];
+					for(var j = 0; j < game.NPCs[i].amountPerSquad;j++){
+						if(game.NPCs[i].price <= actualScrap && Math.random() < (game.NPCs[i].amountPerSquad - j)/game.NPCs[i].amountPerSquad){
+							game.add(new konst({
+								team : 2,
+								position : new Vector2((Math.random()*1.2-0.2)*bgWidth*0.4, 10+(Math.random()*2-1)*bgHeight*0.40),
+							}));
+							actualScrap -= game.NPCs[i].price;
+						}
+					};
+				};
+			};
 		}
 	};
 };

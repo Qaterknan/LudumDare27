@@ -24,6 +24,8 @@ new function Level(){
 		"sniFlat" : "assets/textures/sniper_icon.png",
 		"kamiIso" : "assets/textures/kamikadze.png",
 		"kamiFlat" : "assets/textures/kamikadze_icon.png",
+		
+		"mainScreen" : "assets/textures/main_screen1.png",
 	};
 	this.sounds = {
 		"shop" : "assets/sounds/store.wav",

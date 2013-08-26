@@ -59,6 +59,7 @@ new function Level(){
 					team : 2,
 				}));
 			};
+			
 			//~ Vytváření nepřátelského vojska
 			//~ var actualScrap = game.player.enemyScrap;
 			//~ for(var i in game.NPCs){

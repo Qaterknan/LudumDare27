@@ -3,7 +3,7 @@ function Background( options ){
 	
 	this.color = options.color === undefined ? "#556000" : options.color;
 	this.position = options.position === undefined ? new Vector2() : options.position;
-	this.zIndex = -Infinity;
+	this.zIndex = -1000;
 	this.collidable = false;
 	this.id = "BG";
 	this.width = options.width === undefined ? game.width : options.width;

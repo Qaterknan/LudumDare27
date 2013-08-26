@@ -683,7 +683,7 @@ function NPCs( textures ){
 	var kamikadzeTextureFlat = new Texture(textures.kamiFlat);
 	this.kamikadze = {
 		name : "Kamikadze",
-		description : "BOOM!!!",
+		description : "Explodes on contact!",
 		isoWidth : 33,
 		isoHeight : 36,
 		flatWidth : 40,

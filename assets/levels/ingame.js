@@ -36,7 +36,23 @@ new function Level(){
 				}),
 			}));
 			game.gui.GUILoad(this.scripts.planning);
-			
+			game.add(new Object2({
+				texture : new Texture(_this.textures.bgtexture, {
+					repeat : true,
+				}),
+				width : 5000,
+				height : 3000,
+				zIndex : -1001,
+				collidable : false,
+			}));
+			game.add(new Object2({
+				collidable : false,
+				width : bgWidth,
+				height : bgHeight,
+				color : "#786446",
+				alpha : 0.5,
+				zIndex : -999,
+			}));
 			for(var i = 0; i < 5; i++){
 				game.add(new Mutant({
 					position : new Vector2(100,-120+60*i),

@@ -12,6 +12,8 @@ function Kamikadze( options ){
 	}
 	
 	this.areaOfDamage = 100;
+	this.blood.particleOptions.color = new Color(0x878284);
+	this.projectileLife = this.shootingRange/this.projectileSpeed;
 };
 Kamikadze.prototype = Object.create(Unit.prototype);
 Kamikadze.prototype.strike = function ( cil ){ // Sem později přidat particle effects

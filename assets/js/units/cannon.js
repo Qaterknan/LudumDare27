@@ -1,4 +1,5 @@
 function Cannon( options ){
+	
 	Unit.call(this, options);
 	
 	this.type = options.type === undefined ? "flat" : options.type;
@@ -11,7 +12,9 @@ function Cannon( options ){
 		this.defence -= game.player.units.cannon.defence;
 	}
 	
+	this.bloodColor = new Color(0x878284);
 	this.areaOfDamage = 80;
+	this.projectileLife = this.shootingRange/this.projectileSpeed;
 };
 Cannon.prototype = Object.create(Unit.prototype);
 Cannon.prototype.strike = function ( cil ){ // Sem později přidat particle effects

@@ -12,6 +12,7 @@ function RPG( options ){
 	}
 	
 	this.areaOfDamage = 25;
+	this.projectileLife = this.shootingRange/this.projectileSpeed;
 };
 RPG.prototype = Object.create(Unit.prototype);
 RPG.prototype.strike = function ( cil ){ // Sem později přidat particle effects

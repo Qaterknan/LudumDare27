@@ -24,7 +24,53 @@ function Unit( options ){
 	this.logged = false;
 	this.dying = false;
 	this.target = false;
-
+	
+	this.bloodColor = options.bloodColor === undefined ? new Color(0xaa0000) : options.bloodColor;
+	var colorTo = this.bloodColor;
+	this.blood = new ParticleSystem({
+		position : new Vector2(0,0),
+	}, {
+		color : colorTo,
+		fade : 0.01,
+		velocity : new Vector2(),
+		gravity : new Vector2(0,0.2)
+	},{
+		amount : 10,
+		emiting : false,
+		randomize : {
+			size : {
+				min : 1,
+				max : 4,
+			},
+			spin : {
+				min : 0.1,
+				max : 0.3,
+			},
+			life : {
+				min : 250,
+				max : 750,
+			},
+			velocity : {
+				x : {
+					min : -1,
+					max : 1,
+				},
+				y : {
+					min : -1,
+					max : 1,
+				},
+			},
+		},
+	});
+	this.add(this.blood);
+	
+	this.projectileOptions = {
+		size : 20,
+		color : new Color(0xFFEB0D),
+	};
+	this.projectileSpeed = 15;
+	this.projectileLife = this.shootingRange/this.projectileSpeed;
+	
 };
 Unit.prototype = Object.create( Object2.prototype );
 Unit.prototype.render = function (ctx){
@@ -129,11 +175,11 @@ Unit.prototype.tick = function (){
 	this.scan();
 };
 Unit.prototype.takeDamage = function ( attacker ){// Sem později přidat particle effects
-	console.log(this, attacker);
 	var critical = attacker.criticals[this.name] === undefined ? 1 : attacker.criticals[this.name];
 	var damage = attacker.attack*this.defence*critical;
 	if(damage < 0.1) damage = 0.1;
 	this.health -= damage;
+	this.blood.emit(Math.ceil(damage/2));
 	if(this.health <= 0){
 		this.dying = true;
 		if(this.team == 2)

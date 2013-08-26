@@ -10,5 +10,8 @@ function Helicopter( options ){
 		this.cadency -= game.player.units.helicopter.cadency;
 		this.defence -= game.player.units.helicopter.defence;
 	}
+	
+	this.blood.particleOptions.color = new Color(0x878284);
+	this.projectileLife = this.shootingRange/this.projectileSpeed;
 };
 Helicopter.prototype = Object.create(Unit.prototype);

@@ -24,6 +24,8 @@ function Object2( options ){
 	this.ticks = 0;
 
 	this.texture = options.texture === undefined ? false : options.texture;
+	this.color = options.color === undefined ? "#000000" : options.color;
+	this.alpha = options.alpha === undefined ? 1 : options.alpha;
 	this.rendering = true;
 
 	this.collidable = options.collidable === undefined ? true : options.collidable;
@@ -203,7 +205,8 @@ Object2.prototype.tickChildren = function() {
 		this.children[i].tick();
 		if(this.children[i] === undefined) // Může během ticku zemřít
 			return;
-		this.children[i].checkTimeEvents();
+		if(this.children[i].checkTimeEvents !== undefined)
+			this.children[i].checkTimeEvents();
 		if(this.children[i].tickChildren)
 			this.children[i].tickChildren();
 	};
@@ -234,8 +237,13 @@ Object2.prototype.render = function(ctx) {
 		ctx.save();
 		ctx.rotate(this.rotation);
 		ctx.translate(-this.width/2, -this.height/2);
+		ctx.globalAlpha = this.alpha;
 		if(this.texture){
 			this.texture.draw(ctx, this.width, this.height);
+		}
+		else{
+			ctx.fillStyle = this.color;
+			ctx.fillRect(0,0,this.width,this.height);
 		}
 		ctx.restore();
 	ctx.restore();

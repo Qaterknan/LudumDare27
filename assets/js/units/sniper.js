@@ -10,5 +10,6 @@ function Sniper( options ){
 		this.reloadTime -= game.player.units.sniper.reloadTime;
 		this.cadency -= game.player.units.sniper.cadency;
 	}
+	this.projectileLife = this.shootingRange/this.projectileSpeed;
 };
 Sniper.prototype = Object.create(Unit.prototype);

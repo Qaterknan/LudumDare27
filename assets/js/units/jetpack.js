@@ -10,5 +10,6 @@ function Jetpack( options ){
 		this.health += game.player.units.jetpack.health;
 		this.speed += game.player.units.jetpack.speed;
 	}
+	this.projectileLife = this.shootingRange/this.projectileSpeed;
 };
 Jetpack.prototype = Object.create(Unit.prototype);

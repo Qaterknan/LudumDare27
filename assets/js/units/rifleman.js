@@ -10,6 +10,6 @@ function Rifleman( options ){
 		this.reloadTime -= game.player.units.rifleman.reloadTime;
 		this.defence -= game.player.units.rifleman.defence;
 	}
-	
+	this.projectileLife = this.shootingRange/this.projectileSpeed;
 };
 Rifleman.prototype = Object.create(Unit.prototype);

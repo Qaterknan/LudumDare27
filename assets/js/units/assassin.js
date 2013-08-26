@@ -10,6 +10,7 @@ function Assassin( options ){
 		this.health += game.player.units.assassin.health;
 		this.cadency -= game.player.units.assassin.cadency;
 	}
+	this.projectileLife = this.shootingRange/this.projectileSpeed;
 	
 };
 Assassin.prototype = Object.create(Unit.prototype);

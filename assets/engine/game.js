@@ -151,7 +151,7 @@ Game.prototype.checkCollisions = function(obj){
 	var colliding = [];
 	for(var i in this.children){
 		var child = this.children[i];
-		if(child != obj){
+		if(child != obj && child.checkCollision){
 			if(child.checkCollision(obj)){
 				colliding.push(child);
 			//~ var collision = child.testCollision(obj, true);

@@ -10,6 +10,7 @@ function Motorbike( options ){
 		this.health += game.player.units.motorbike.health;
 		this.reloadTime -= game.player.units.motorbike.reloadTime;
 	}
-	
+	this.blood.particleOptions.color = new Color(0x878284);
+	this.projectileLife = this.shootingRange/this.projectileSpeed;
 };
 Motorbike.prototype = Object.create(Unit.prototype);

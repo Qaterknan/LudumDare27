@@ -10,5 +10,8 @@ function Mutant( options ){
 		this.speed += game.player.units.mutant.speed;
 		this.health += game.player.units.mutant.health;
 	}
+	
+	this.blood.particleOptions.color = new Color(0x71A818);
+	this.projectileLife = this.shootingRange/this.projectileSpeed;
 };
 Mutant.prototype = Object.create(Unit.prototype);

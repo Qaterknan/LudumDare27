@@ -53,7 +53,7 @@ function NPCs( textures ){
 				price : 1,
 				increase : 2,
 				maximum : 3,
-				bonus : 5,
+				bonus : 3,
 			},
 			health : {
 				price : 1,
@@ -125,7 +125,7 @@ function NPCs( textures ){
 				price : 1,
 				increase : 2,
 				maximum : 3,
-				bonus : 5,
+				bonus : 0.5,
 			},
 			reloadTime : {
 				price : 3,
@@ -198,7 +198,7 @@ function NPCs( textures ){
 				price : 3,
 				increase : 4,
 				maximum : 3,
-				bonus : 10,
+				bonus : 8,
 			},
 			health : {
 				price : 1,

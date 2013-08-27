@@ -196,6 +196,11 @@ Unit.prototype.takeDamage = function ( attacker ){// Sem později přidat partic
 Unit.prototype.strike = function ( cil ){ // Sem později přidat particle effects
 	this.texture.switchAnimation("striking");
 	if(!this.recharging){
+		var rdm = Math.random();
+		if(rdm < 0.25) game.jukebox.objects.strela1.play();
+		else if(rdm < 0.5) game.jukebox.objects.strela2.play();
+		else if(rdm < 0.75) game.jukebox.objects.strela3.play();
+		else game.jukebox.objects.strela4.play();
 		cil.takeDamage(this);
 		this.recharging = true;
 		this.addTimeEvent(this.cadency, function (ja){ja.recharging = false;}, false);

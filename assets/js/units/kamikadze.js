@@ -26,4 +26,5 @@ Kamikadze.prototype.strike = function ( cil ){ // Sem později přidat particle 
 		}
 	};
 	this.dying = true;
+	game.jukebox.objects.vybuch.play();
 };

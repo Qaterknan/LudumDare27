@@ -28,8 +28,6 @@ Background.prototype.render = function (ctx){
 	else
 		this.texture.draw(ctx,this.width,this.height);
 	ctx.restore();
-	ctx.fillStyle = "#ff0000";
-	ctx.fillRect(this.position.x,this.position.y, 10,10);
 };
 
 Background.prototype.damage = function (howMuch, who){

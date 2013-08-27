@@ -84,14 +84,27 @@
 				window.clearInterval(interval);
 				game.gui.remove(game.gui.children.countdown);
 				game.eventhandler.resetControls();
-				game.gui.addControls();
-				game.gui.GUILoad(game.loader.scripts["assets/js/guis/observing.js"]);
-				game.paused = false;
-				game.camera.origin = new Vector2(0,0);
-				game.camera.finalZoom = 1;
-				for(var i in game.children){
-					if(game.children[i] instanceof Unit){
-						game.NPCs.switchType(game.children[i], "iso")
+				if(game.firstTime){
+					game.gui.GUILoad(game.loader.scripts["assets/js/guis/observingFirst.js"]);
+					game.camera.origin = new Vector2(0,0);
+					game.camera.finalZoom = 1;
+					for(var i in game.children){
+						if(game.children[i] instanceof Unit){
+							game.NPCs.switchType(game.children[i], "iso")
+						}
+					};
+					game.firstTime = false;
+				}
+				else{
+					game.gui.addControls();
+					game.gui.GUILoad(game.loader.scripts["assets/js/guis/observing.js"]);
+					game.paused = false;
+					game.camera.origin = new Vector2(0,0);
+					game.camera.finalZoom = 1;
+					for(var i in game.children){
+						if(game.children[i] instanceof Unit){
+							game.NPCs.switchType(game.children[i], "iso")
+						}
 					}
 				}
 			}

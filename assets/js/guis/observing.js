@@ -48,6 +48,7 @@
 				game.player.won = false;
 				game.camera.position.set(0,0);
 				game.camera.origin.set(0,0);
+				game.jukebox.silence();
 				game.levelLoad("assets/levels/ingame.js");
 			}
 		});
@@ -148,6 +149,13 @@
 		}), "pressEsc");
 	},
 	afterload : function(){
-		return;
+		if(Math.random() > 0.5){
+			game.jukebox.objects.boj.loop = true;
+			game.jukebox.objects.boj.play();
+		}
+		else{
+			game.jukebox.objects.valka.loop = true;
+			game.jukebox.objects.valka.play();
+		}
 	},
 }

@@ -82,7 +82,7 @@
 				size : 35,
 				color : "#000000",
 				font : "sans-serif",
-				value : "Let's fight!",
+				value : "Lets fight!",
 				position : new Vector2(0,0),
 			},
 			mouseup : function (){

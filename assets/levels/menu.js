@@ -39,6 +39,14 @@ new function Level(){
 	this.sounds = {
 		"shop" : "assets/sounds/store.wav",
 		"tenSeconds" : "assets/sounds/10sekund.wav",
+		"boj" : "assets/sounds/boj.wav",
+		"valka" : "assets/sounds/valka2.wav",
+		
+		"strela1" : "assets/sounds/strela3.wav",
+		"strela2" : "assets/sounds/strela4.wav",
+		"strela3" : "assets/sounds/strela5.wav",
+		"strela4" : "assets/sounds/zbran.wav",
+		"vybuch" : "assets/sounds/vybuch2.wav",
 	};
 	this.scripts = {
 		"menuGUI" : "assets/js/guis/menu.js",
@@ -46,6 +54,16 @@ new function Level(){
 	this.afterLoad = function(){
 		game.gui.GUILoad(this.scripts.menuGUI);
 		game.jukebox.addSounds(this.sounds);
+		game.jukebox.objects.strela1.volume = 0.4;
+		game.jukebox.objects.strela1.loop = false;
+		game.jukebox.objects.strela2.volume = 0.4;
+		game.jukebox.objects.strela2.loop = false;
+		game.jukebox.objects.strela3.volume = 0.4;
+		game.jukebox.objects.strela3.loop = false;
+		game.jukebox.objects.strela4.volume = 0.4;
+		game.jukebox.objects.strela4.loop = false;
+		game.jukebox.objects.vybuch.volume = 0.4;
+		game.jukebox.objects.vybuch.loop = false;
 		game.NPCs = new NPCs(this.textures);
 		game.enviroment = new Enviroment(this.textures);
 	};

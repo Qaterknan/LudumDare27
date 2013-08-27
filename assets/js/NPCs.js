@@ -147,12 +147,12 @@ function NPCs( textures ){
 	// ASSASSIN
 	
 	var assassinTextureIso = new Texture(textures.assinIso, {
-		totalFrames : 5,
+		totalFrames : 6,
 		currentAnimation : "walking",
 		animations : {
 			walking : {
 				start : 0,
-				end : 4,
+				end : 3,
 				speed : 200,
 			},
 			standing : {
@@ -161,8 +161,8 @@ function NPCs( textures ){
 				speed : 200,
 			},
 			striking : {
-				start:3,
-				end:4,
+				start:4,
+				end:5,
 				speed:200
 			},
 		},

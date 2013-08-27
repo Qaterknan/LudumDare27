@@ -4,7 +4,7 @@ new function Level(){
 		"rifleIso" : "assets/textures/rifleman.png",
 		"mutFlat" : "assets/textures/mutant_icon.png",
 		"rifleFlat" : "assets/textures/rifleman_icon.png",
-		"assinIso" : "assets/textures/assassin.png",
+		"assinIso" : "assets/textures/assassin2.png",
 		"assinFlat" : "assets/textures/assassin_icon.png",
 		"jetIso" : "assets/textures/jetpack.png",
 		"jetFlat" : "assets/textures/jetpack_icon.png",
